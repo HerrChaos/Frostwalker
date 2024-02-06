@@ -1,5 +1,6 @@
 package chaos.frost.mixin;
 
+import chaos.frost.NewFrostwalker;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.FrostWalkerEnchantment;
@@ -16,7 +17,7 @@ public class FrostRefreshMixin {
         LivingEntity thiss = (LivingEntity) (Object) this;
 
         int i = EnchantmentHelper.getEquipmentLevel(Enchantments.FROST_WALKER, thiss);
-        if (i > 0) {
+        if (i > 0 && NewFrostwalker.CONFIG.generateIceWhileStill()) {
             FrostWalkerEnchantment.freezeWater(thiss, thiss.getWorld(), thiss.getBlockPos(), i);
         }
     }
